@@ -1,6 +1,7 @@
 /* eslint-disable prefer-const */
 import React, { useState, useEffect } from 'react';
-import { View, Text, TouchableHighlight, Button } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
+import { ThemeProvider, Button } from 'react-native-elements';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { styles } from './HomeStyle';
 import { Start } from '../start/Start';
@@ -10,14 +11,22 @@ import { AddFunds } from '../addFunds/AddFunds';
 
 const Tab = createBottomTabNavigator();
 
-// const [balance, setBalance] = useState<number | undefined>(undefined);
-// eslint-disable-next-line react-hooks/rules-of-hooks
-// eslint-disable-next-line prefer-const
-
-// let ing: number = 123;
-// let gast: number = 123123;
-// eslint-disable-next-line no-unused-vars
-// let bal: number = 123123;
+const theme = {
+  Button: {
+    containerStyle: [
+      {
+        marginRight: 10,
+        borderRadius: 12,
+        borderWidth: 1,
+        borderColor: '#FF6C5D',
+        textAlign: 'center',
+      },
+    ],
+    titleStyle: {
+      color: '#FF6C5D',
+    },
+  },
+};
 
 function recargarDinero() {
   console.log('recargaste dinero');
@@ -62,20 +71,17 @@ function HomeScreen() {
       </View>
       <View style={styles.view3}>
         <View>
-          <TouchableHighlight
+          <TouchableOpacity
             onPress={recargarDinero}
             style={styles.bottonRecargar}
           >
             <Text style={styles.bottonTextR}>Recargar Dinero</Text>
-          </TouchableHighlight>
+          </TouchableOpacity>
         </View>
         <View>
-          <TouchableHighlight
-            onPress={enviarDinero}
-            style={styles.bottonEnviar}
-          >
+          <TouchableOpacity onPress={enviarDinero} style={styles.bottonEnviar}>
             <Text style={styles.bottonTextE}>Enviar Dinero</Text>
-          </TouchableHighlight>
+          </TouchableOpacity>
         </View>
       </View>
     </View>
@@ -87,21 +93,23 @@ function HomeScreen() {
 export const Home = () => (
   <Tab.Navigator>
     <Tab.Screen
-      name="User"
+      name="Home"
       component={HomeScreen}
       options={{
         headerTitle: `Hola {name}`,
         headerShown: true,
         headerRight: () => (
-          <Button
-            onPress={() => alert('This is a button!')}
-            title="mi cuenta"
-            color="#FF6C5D"
-          />
+          <ThemeProvider theme={theme}>
+            <Button
+              onPress={() => alert('This is a button!')}
+              title="mi cuenta"
+              type="clear"
+            />
+          </ThemeProvider>
         ),
       }}
     />
-    <Tab.Screen name="Home" component={Start} />
+    <Tab.Screen name="Start" component={Start} />
     <Tab.Screen name="Register" component={Register} />
     <Tab.Screen name="Login" component={Login} />
     <Tab.Screen name="Estadisticas" component={AddFunds} />
