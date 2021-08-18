@@ -5,13 +5,13 @@ import colors from '../../constants/colors';
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#FFFFF',
+    backgroundColor: '#f0f',
     marginTop: 50,
     alignSelf: 'center',
   },
   box: {
     borderRadius: 23,
-    backgroundColor: '#FFFFF',
+    backgroundColor: '#f0f',
     borderColor: `${colors.primary}`,
     borderWidth: 1,
     textAlign: 'center',

@@ -5,7 +5,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { firebaseConfig } from '../constants/firebase.config';
 import { loginStackParamList } from '../types/Types';
 import { config } from '../screens/index';
-import { Drawer } from '../screens/drawer/drawer';
+import { HomeTab } from '../screens/homeTab/HomeTab';
 
 firebase.initializeApp(firebaseConfig);
 
@@ -46,7 +46,7 @@ export const Main = () => (
     />
     <LoginStack.Screen
       name="HomeTab"
-      component={Drawer}
+      component={HomeTab}
       options={{
         headerTitle: 'Inicio',
         headerShown: false,

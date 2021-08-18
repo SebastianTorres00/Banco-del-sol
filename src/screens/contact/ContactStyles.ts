@@ -29,7 +29,7 @@ export const styles = StyleSheet.create({
   },
   BTNBox: {
     flex: 1,
-    backgroundColor: '#FFFFF',
+    backgroundColor: '#f0f',
     borderColor: `${colors.primary}`,
     borderWidth: 1,
     marginTop: 50,
