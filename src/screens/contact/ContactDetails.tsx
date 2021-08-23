@@ -4,7 +4,7 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import { useSelector } from 'react-redux';
 import { LinearGradient } from 'expo-linear-gradient';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-import { loginStackParamList } from '../../types/Types';
+import { loginStackParamList, RootState } from '../../types/Types';
 import { styles } from './ContactDetailsStyles';
 import colors from '../../constants/colors';
 
@@ -13,7 +13,7 @@ type Props = {
 };
 
 export const ContactDetails = ({ navigation }: Props) => {
-  const details = useSelector(state => state.DetailTransfer);
+  const details = useSelector<RootState>(state => state.DetailTransfer);
 
   function toTransfer() {
     navigation.push('Transfer');
