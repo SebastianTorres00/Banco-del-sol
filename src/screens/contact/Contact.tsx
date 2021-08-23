@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, TouchableOpacity, TextInput } from 'react-native';
-import { Ionicons, AntDesign } from '@expo/vector-icons';
+import { Ionicons, AntDesign, FontAwesome5 } from '@expo/vector-icons';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { useSelector, useDispatch } from 'react-redux';
 import { LinearGradient } from 'expo-linear-gradient';
-import { Icon } from 'react-native-elements';
-import { FontAwesome5 } from '@expo/vector-icons';
-import { loginStackParamList } from '../../types/Types';
+import { loginStackParamList, RootState, TypeContact } from '../../types/Types';
 import { styles } from './ContactStyles';
 import { detailContact, RemoveContact } from '../../redux/actions';
 import colors from '../../constants/colors';
@@ -16,11 +14,14 @@ type Props = {
 };
 
 export const Contact = ({ navigation }: Props) => {
-  const [contactos, setContactos] = useState<Object>([{ name: '', email: '' }]);
+  const [contactos, setContactos] = useState<{ name: string; email: string }[]>(
+    [{ name: '', email: '' }],
+  );
 
   const [text, setText] = useState<String>('');
   const dispatch = useDispatch();
-  const contact = useSelector(state => state.Contacts);
+  const contact = useSelector<RootState>(state => state.Contacts);
+
   function clear() {
     navigation.push('HomeTab');
     dispatch(detailContact('', ''));
@@ -33,9 +34,9 @@ export const Contact = ({ navigation }: Props) => {
     navigation.push('ContactDetails');
     dispatch(detailContact(email, name));
   }
-  function filterSearch(text) {
-    setText(text);
-    const newData = contact.filter(function (item) {
+  function filterSearch(searchText: string) {
+    setText(searchText);
+    const newData = contact.filter(function (item: TypeContact) {
       const itemData = item.name.toUpperCase();
       const textData = text.toUpperCase();
 
@@ -47,11 +48,12 @@ export const Contact = ({ navigation }: Props) => {
     }
   }
 
-  function alertremove(email: email) {
-    let info = confirm('¿Estas seguro/a que quieres eliminar este contacto?');
+  function alertremove(email: string) {
+    const info = window.confirm(
+      '¿Estas seguro/a que quieres eliminar este contacto?',
+    );
     if (info) {
       dispatch(RemoveContact(email));
-      return;
     }
   }
 
@@ -71,20 +73,10 @@ export const Contact = ({ navigation }: Props) => {
             clear();
           }}
         >
-          <AntDesign
-            name="arrowleft"
-            size={35}
-            color="white"
-            style={styles.icon}
-          />
+          <AntDesign name="arrowleft" size={35} color="white" />
         </TouchableOpacity>
       </View>
-      {/* <AntDesign
-        name="search"
-        size={28}
-        color={colors.primary}
-        style={styles.searchIcon}
-      /> */}
+
       <FontAwesome5
         name="search"
         size={24}
@@ -105,11 +97,10 @@ export const Contact = ({ navigation }: Props) => {
             color={colors.primary}
             style={styles.iconAdd}
           />
-          {/* <Text style={styles.textBtn}>Agregar</Text> */}
         </TouchableOpacity>
       </View>
 
-      {contactos.map((contacto: string) => {
+      {contactos.map((contacto: TypeContact) => {
         return contacto.name ? (
           <View>
             <TouchableOpacity
@@ -117,11 +108,7 @@ export const Contact = ({ navigation }: Props) => {
               style={styles.BTNBox}
             >
               <TouchableOpacity
-                onPress={
-                  () => alertremove(contacto.email)
-                  // deleteContact(contacto.email)
-                  // dispatch(RemoveContact(contacto.email))
-                }
+                onPress={() => alertremove(contacto.email)}
                 style={styles.BTNRemove}
               >
                 <View key={contacto.email}>

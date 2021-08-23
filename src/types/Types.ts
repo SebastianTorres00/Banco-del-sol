@@ -111,3 +111,8 @@ export interface RootState {
 export type errors = {
   errors: string;
 };
+
+export interface TypeContact {
+  name: string;
+  email: string;
+}

@@ -266,10 +266,9 @@ export function addFunds(
   comment: string,
   token: string,
 ) {
-  return async (dispatch:any) => {
-    try{
-      await axios
-      .post(
+  return async (dispatch: any) => {
+    try {
+      await axios.post(
         `http://localhost:3001/api/account`,
         { senderEmail, receiverEmail, type, value, comment },
         {
@@ -277,14 +276,15 @@ export function addFunds(
             authorization: `Bearer ${token}`,
           },
         },
-      )
-    }catch(error){
+      );
+    } catch (error) {
       console.error(error);
       dispatch({
         type: SET_ERROR,
         payload: 'El usuario no se ha encontrado',
       });
-    };
+    }
+  };
 }
 
 export const getEmail =
@@ -412,7 +412,6 @@ export async function updateUser(user: any, token: string, dispatch: any) {
 }
 
 export const RemoveContact = (email: string) => dispatch => {
-  console.log('RemoveContact', email);
   dispatch({
     type: REMOVE_CONTACT,
     payload: email,
