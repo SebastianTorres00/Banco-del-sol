@@ -21,8 +21,8 @@ type Props = {
 
 export const ContactAdd = ({ navigation }: Props) => {
   const dispatch = useDispatch();
-  const [email, setEmail] = useState<String>('');
-  const [name, setName] = useState<String>('');
+  const [email, setEmail] = useState<string>('');
+  const [name, setName] = useState<string>('');
   const [step, setStep] = useState<boolean>(false);
   const [msg, setMsg] = useState<boolean>(false);
   const [showInput, setShowInput] = useState<boolean>(false);
@@ -112,8 +112,12 @@ export const ContactAdd = ({ navigation }: Props) => {
 
   // AddFriend se encarga de guardar en "REDUX" los contactos que fueron agregados.
 
-  function AddFriend(email, idToken, name) {
-    dispatch(getEmail(email, idToken, name));
+  function AddFriend(
+    emailFriend: string,
+    idTokenUser: string,
+    nameFriend: string,
+  ) {
+    dispatch(getEmail(emailFriend, idTokenUser, nameFriend));
     setEmail('');
     setName('');
     setShowInput(false);
