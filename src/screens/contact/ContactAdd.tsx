@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { LinearGradient } from 'expo-linear-gradient';
 import { AntDesign } from '@expo/vector-icons';
+import { ScrollView } from 'react-native-gesture-handler';
 import {
   detailContact,
   getEmail,
@@ -13,7 +14,6 @@ import {
 import { styles } from './ContactAddStyles';
 import { loginStackParamList, RootState } from '../../types/Types';
 import colors from '../../constants/colors';
-import { ScrollView } from 'react-native-gesture-handler';
 
 type Props = {
   navigation: StackNavigationProp<loginStackParamList, 'List'>;
