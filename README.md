@@ -1,5 +1,8 @@
 # Boceto realizado por Santiago Veiga
-
+<br>
+Proyecto: Año 2021
+Video app funcional: <a target="_blank" href="https://www.w3schools.com](https://www.youtube.com/watch?v=XzCn3DgDVsY&ab_channel=SantiagoVeiga">Click aca!</a>
+<br>
 
 [<img width="230px" height="375px" src="./Img-Sant/01 - Start.jpg">
 <img width="230px" height="375px"  src="./Img-Sant/02A - LogIn.jpg">
